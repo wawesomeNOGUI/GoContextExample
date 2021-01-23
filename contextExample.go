@@ -41,6 +41,8 @@ func (a newContext) Value(key interface{}) interface{} {
 	return nil
 }
 
+//This func should run for ~2500 seconds and print "hi" that many times, but we
+//use the context.CancelFunc() function in restart() to stop the work early 
 func infinite(ctx context.Context) {
 	var wg sync.WaitGroup
 
