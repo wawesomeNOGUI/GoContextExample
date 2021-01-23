@@ -42,7 +42,7 @@ func (a newContext) Value(key interface{}) interface{} {
 }
 
 //This func should run for ~2500 seconds and print "hi" that many times, but we
-//use the context.CancelFunc() function in restart() to stop the work early 
+//use the context.CancelFunc() function in restart() to stop the work early
 func infinite(ctx context.Context) {
 	var wg sync.WaitGroup
 
@@ -71,6 +71,8 @@ func main() {
 	go infinite(ctx)
 	go restart(cancel)
 
+  //Blocks unitl this context's Done channel is closed
+	//(calling context.CancelFunc like in restart closes the Done channel)
 	<-ctx.Done()
 
 	fmt.Println("Wooo canceled infinite early")
