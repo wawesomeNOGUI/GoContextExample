@@ -71,7 +71,7 @@ func main() {
 	go infinite(ctx)
 	go restart(cancel)
 
-  //Blocks unitl this context's Done channel is closed
+	//Blocks unitl this context's Done channel is closed
 	//(calling context.CancelFunc like in restart closes the Done channel)
 	<-ctx.Done()
 
