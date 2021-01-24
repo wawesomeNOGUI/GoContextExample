@@ -50,6 +50,13 @@ func infinite(ctx context.Context) {
 		for i := 0; i < 2500; i++ {
 			fmt.Println("hi")
 			time.Sleep(time.Second)
+
+			select{
+			  case <-ctx.Done():   //if Done channel closed exit the function
+					return
+				default:
+					//keep going
+			}
 		}
 		wg.Done()
 	}()
@@ -76,6 +83,9 @@ func main() {
 	<-ctx.Done()
 
 	fmt.Println("Wooo canceled infinite early")
+
+	for{}  //block main infinetly to make sure no more "hi"'s are printed and the
+	       //infinte() go routine has returned
 
 
 }
