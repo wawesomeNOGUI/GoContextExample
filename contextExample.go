@@ -84,7 +84,7 @@ func main() {
 
 	fmt.Println("Wooo canceled infinite early")
 
-	for{}  //block main infinetly to make sure no more "hi"'s are printed and the
+	select{}  //block main infinetly to make sure no more "hi"'s are printed and the
 	       //infinte() go routine has returned
 
 
